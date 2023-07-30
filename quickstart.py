@@ -5,9 +5,12 @@ import time
 # Modified from Pinecone Quickstart -> https://docs.pinecone.io/docs/quickstart
 
 # Load API data from config.yaml
+
+
 def read_yaml(file_path):
     with open(file_path, "r") as f:
         return yaml.safe_load(f)
+
 
 apiInfo = read_yaml("config.yaml")
 
@@ -41,12 +44,12 @@ index.upsert([
 print(index.describe_index_stats())
 # # Returns:
 # # {'dimension': 8, 'index_fullness': 0.0, 'namespaces': {'': {'vector_count': 5}}}
-
 # # Query open index for top (3) vectors most similar to example : '[0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3]'
+
 print(index.query(
-  vector=[0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3],
-  top_k=3,
-  include_values=True
+    vector=[0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3],
+    top_k=3,
+    include_values=True
 ))
 # Returns:
 # {'matches': [{'id': 'C',
@@ -62,4 +65,3 @@ print(index.query(
 
 # Delete index
 pinecone.delete_index("quickstart")
-
