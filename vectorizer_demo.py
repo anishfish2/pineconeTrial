@@ -8,7 +8,6 @@ from nltk.tokenize import word_tokenize
 import numpy as np
 from sent2vec.vectorizer import Vectorizer
 
-# Modified from Pinecone Quickstart -> https://docs.pinecone.io/docs/quickstart
 # Load API data from config.yaml
 
 #Function to ensure index has been fully initalized
