@@ -19,9 +19,15 @@ def wait_on_index(serverName):
 
 if __name__ == '__main__':
     
-    print('Running init.py')
-    
     serverName = sys.argv[1]
+
+    print('Creating Index', serverName)
+    
+    if sys.argv[2]:
+        vector_dim = int(sys.argv[2])
+    else:
+       #Default sent2vec dim
+       vector_dim = 768
 
     def read_yaml(file_path):
         with open(file_path, "r") as f:
@@ -37,8 +43,10 @@ if __name__ == '__main__':
     # Create pinecone index and load
     pinecone.init(api_key=api_key, environment=environment)
 
-    pinecone.create_index(serverName, dimension=8, metric="euclidean")
+    pinecone.create_index(serverName, dimension=vector_dim, metric="euclidean")
 
-    print("During init.py:", pinecone.list_indexes())
+    print("Indexes after Creation:", pinecone.list_indexes())
+
     wait_on_index(serverName)
+
     time.sleep(30)
